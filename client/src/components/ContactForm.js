@@ -1,61 +1,47 @@
 import React, { useState } from "react";
-import { useForm } from "react-hook-form";
 
 const ContactForm = () => {
-  const [data, setData] = useState();
-  const { register, errors, handleSubmit, reset } = useForm({
-    mode: "onBlur",
+  const [formValues, setFormValues] = useState({
+    fname: "",
+    lname: "",
+    id: Date.now(),
   });
-  const onSubmit = (data) => {
-    setData(data);
+  const onInputChange = (event) => {
+    const inputThatChanged = event.target.name;
+    const newValueForInput = event.target.value;
+    setFormValues({
+      ...formValues,
+      [inputThatChanged]: newValueForInput,
+    });
   };
 
   return (
     <div className="App">
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <div>
-          <label htmlFor="firstName">First Name*</label>
+      {/* Make a form to add friends! */}
+      <form>
+        <label htmlFor="firstName">
+          first name:
           <input
+            placeholder="Natalia"
+            id="firstName"
+            onChange={onInputChange}
+            value={formValues.fnameValue}
             name="firstName"
-            placeholder="bill"
-            ref={register({ required: true, maxLength: 3 })}
+            type="text"
           />
-          {errors.firstName && (
-            <p>Looks like there was an error: {errors.firstName.type}</p>
-          )}
-        </div>
+        </label>
 
-        <div>
-          <label htmlFor="lastName">Last Name*</label>
+        <label htmlFor="lastName">
+          last name:
           <input
+            placeholder="Stewart"
+            id="lastName"
+            onChange={onInputChange}
+            value={formValues.fnameValue}
             name="lastName"
-            placeholder="luo"
-            ref={register({ required: true })}
+            type="text"
           />
-          {errors.lastName && (
-            <p>Looks like there was an error: {errors.lastName.type}</p>
-          )}
-        </div>
-
-        <div>
-          <label htmlFor="email" placeholder="bluebill1049@hotmail.com">
-            Email*
-          </label>
-          <input name="email" ref={register({ required: true })} />
-          {errors.email && (
-            <p>Looks like there was an error: {errors.email.type}</p>
-          )}
-        </div>
-        <div>
-          <label htmlFor="message">Message</label>
-          <textarea name="message" ref={register({ required: false })} />
-        </div>
-        {data && (
-          <pre style={{ textAlign: "left", color: "white" }}>
-            {JSON.stringify(data, null, 2)}
-          </pre>
-        )}
-        <input type="submit" />
+        </label>
       </form>
     </div>
   );

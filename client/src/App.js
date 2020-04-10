@@ -2,7 +2,7 @@ import React from "react";
 import "./App.css";
 import axios from "axios";
 import Users from "./components/Users";
-import SearchForm from "./components/SearchForm";
+
 import ContactForm from "./components/ContactForm";
 
 class App extends React.Component {
