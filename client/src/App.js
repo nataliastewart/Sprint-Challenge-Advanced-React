@@ -2,6 +2,7 @@ import React from "react";
 import "./App.css";
 import axios from "axios";
 import Users from "./components/Users";
+import SearchForm from "./components/SearchForm";
 
 class App extends React.Component {
   constructor() {
@@ -29,11 +30,9 @@ class App extends React.Component {
 
     return (
       <div className="App">
-        <header className="App-header">
-          <p>Women's World Cup</p>
-        </header>
-        {/* {this.state.data.map((item) => { */}
-        <Users person={this.state.person} />;{/* // })} */}
+        <p>Women's World Cup</p>
+        <SearchForm />
+        <Users person={this.state.person} />;
       </div>
     );
   }
