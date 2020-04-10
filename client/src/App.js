@@ -3,6 +3,7 @@ import "./App.css";
 import axios from "axios";
 import Users from "./components/Users";
 import SearchForm from "./components/SearchForm";
+import ContactForm from "./components/ContactForm";
 
 class App extends React.Component {
   constructor() {
@@ -31,7 +32,8 @@ class App extends React.Component {
     return (
       <div className="App">
         <p>Women's World Cup</p>
-        <SearchForm />
+        <ContactForm />
+        {/* <SearchForm /> */}
         <Users person={this.state.person} />;
       </div>
     );
