@@ -1,26 +1,43 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import "./App.css";
+import axios from "axios";
+import Users from "./components/Users";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import ContactForm from "./components/ContactForm";
+
+class App extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      // data: {},
+      // name: "",
+      // country: "",
+      person: [],
+    };
+  }
+  componentDidMount() {
+    axios
+      .get("http://localhost:5000/api/players")
+      .then((response) => {
+        console.log("DATA", response.data);
+
+        this.setState({ person: response.data });
+      })
+      .catch((err) => console.error(err));
+  }
+
+  render() {
+    // console.log(this.state.data);
+
+    return (
+      <div className="App">
+        <p>Women's World Cup</p>
+        <ContactForm />
+        {/* <SearchForm /> */}
+        <Users person={this.state.person} />;
+      </div>
+    );
+  }
 }
 
 export default App;
